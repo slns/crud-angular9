@@ -1,0 +1,39 @@
+<mat-card>
+    <mat-card-title>Novo Produto</mat-card-title>
+    <p *ngIf="isValidFormSubmitted" [ngClass] = "'success'">
+        Product submitted successfully.
+    </p>
+    <form #ngForm="ngForm">
+        <mat-form-field>
+            <input matInput placeholder="Nome" [(ngModel)]="product.name" name="name" required [pattern]="namePattern" #name="ngModel">
+                <mat-error *ngIf="name.errors && !isValidFormSubmitted" [ngClass] = "'error'"> 
+                    <mat-error *ngIf="name.errors.required"> 
+                        Name required.
+                    </mat-error>
+                    <mat-error *ngIf="name.errors.pattern"> 
+                        Name not valid.
+                    </mat-error>
+                </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Preço (€)"
+                [(ngModel)]="product.price" name="price" required [pattern]="pricePattern" #price="ngModel" >
+                <mat-error *ngIf="price.errors && !isValidFormSubmitted" [ngClass] = "'error'"> 
+                    <mat-error *ngIf="price.errors.required"> 
+                        Price required.
+                    </mat-error>
+                    <mat-error *ngIf="price.errors.pattern"> 
+                        Price not valid(ex: 11 or 11.00).
+                    </mat-error>
+                </mat-error>               
+        </mat-form-field>
+    </form>
+
+    <button mat-raised-button  color="primary" (click)="createProduct(ngForm)" [disabled]="!ngForm.valid">
+        Salvar
+    </button>
+
+    <button mat-raised-button (click)="cancel()">
+        Cancelar
+    </button>
+</mat-card>
