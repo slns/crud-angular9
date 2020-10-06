@@ -19,6 +19,8 @@ import { FooterComponent }            from './components/template/footer/footer.
 import { NavComponent }               from './components/template/nav/nav.component';
 import { ProductCreateComponent }     from './components/product/product-create/product-create.component';
 import { ProductReadComponent }       from './components/product/product-read/product-read.component';
+import { ProductUpdateComponent }     from './components/product/product-update/product-update.component';
+import { ProductDeleteComponent }     from './components/product/product-delete/product-delete.component';
     
 import { HttpClientModule }           from '@angular/common/http';
 import { MatButtonModule }            from '@angular/material/button';
@@ -32,8 +34,6 @@ import { MatToolbarModule }           from '@angular/material/toolbar';
 import { MatTableModule }             from '@angular/material/table';
 import { MatPaginatorModule }         from '@angular/material/paginator';
 import { MatSortModule }              from '@angular/material/sort';
-import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
-import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 
 registerLocaleData(localePT);
 

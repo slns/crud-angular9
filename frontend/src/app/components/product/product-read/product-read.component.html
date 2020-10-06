@@ -41,9 +41,9 @@
     </table>
 
     <mat-paginator #paginator
-    [length]="dataSource?.data.length"
-    [pageIndex]="0"
-    [pageSize]="3"
-    [pageSizeOptions]="[3, 6, 9, 12, 15]">
-  </mat-paginator>
+        [length] = "dataSource?.data.length"
+        [pageIndex] = PAGE_INDEX
+        [pageSize] = PAGE_SIZE
+        [pageSizeOptions] = PAGE_SIZE_OPTIONS 
+    ></mat-paginator>
   </div>

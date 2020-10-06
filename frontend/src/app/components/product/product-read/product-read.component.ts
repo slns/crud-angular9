@@ -16,6 +16,9 @@ export class ProductReadComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<Product>;
   
+  PAGE_INDEX = 0;
+  PAGE_SIZE = 3;
+  PAGE_SIZE_OPTIONS = [3, 6, 9, 12, 15];
 
   products: Product[]
   displayedColumns = ['id', 'name', 'price', 'action']
