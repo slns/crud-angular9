@@ -1,16 +1,31 @@
 <mat-card>
     <mat-card-title>Alterar Produto</mat-card-title>
-    <form>
+    <form #ngForm="ngForm">
         <mat-form-field>
-            <input matInput placeholder="Nome"
-                [(ngModel)]="product.name" name="name">
+            <input matInput placeholder="Nome" [(ngModel)]="product.name" name="name" required [pattern]="namePattern" #name="ngModel">
+            <mat-error *ngIf="name.errors && !isValidFormSubmitted" [ngClass] = "'error'"> 
+                <mat-error *ngIf="name.errors.required"> 
+                    Name required.
+                </mat-error>
+                <mat-error *ngIf="name.errors.pattern"> 
+                    Name not valid.
+                </mat-error>
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Preço (€)"
-                [(ngModel)]="product.price" name="price">
+            [(ngModel)]="product.price" name="price" required [pattern]="pricePattern" #price="ngModel" >
+            <mat-error *ngIf="price.errors && !isValidFormSubmitted" [ngClass] = "'error'"> 
+                <mat-error *ngIf="price.errors.required"> 
+                    Price required.
+                </mat-error>
+                <mat-error *ngIf="price.errors.pattern"> 
+                    Price not valid(ex: 11 or 11.00).
+                </mat-error>
+            </mat-error> 
         </mat-form-field>
     </form>
-    <button mat-raised-button (click)="updateProduct()" color="primary">
+    <button mat-raised-button (click)="updateProduct(ngForm)" color="primary" [disabled]="!ngForm.valid">
         Atualizar
     </button>
     

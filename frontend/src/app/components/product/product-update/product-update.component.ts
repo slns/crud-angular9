@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
+import { NgForm } from '@angular/forms';
+
 
 import { Product } from "./../product.model";
 import { ProductService } from "./../product.service";
@@ -11,6 +13,12 @@ import { ProductService } from "./../product.service";
 })
 export class ProductUpdateComponent implements OnInit {
   product: Product;
+
+  namePattern = "^[a-zA-Z0-9_-]{3,15}$";
+  pricePattern = "[0-9]+(\.[0-9][0-9])?";
+
+  isValidFormSubmitted = false;
+
 
   constructor(
     private productService: ProductService,
@@ -25,8 +33,14 @@ export class ProductUpdateComponent implements OnInit {
     });
   }
 
-  updateProduct(): void {
+  updateProduct(form: NgForm): void {
+    this.isValidFormSubmitted = false;
+     if (form.invalid) {
+        return;
+     }
     this.productService.update(this.product).subscribe(() => {
+      this.isValidFormSubmitted = true;
+      form.resetForm();
       this.productService.showMessage("Produto atualizado com sucesso!");
       this.router.navigate(["/products"]);
     });

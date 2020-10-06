@@ -3,7 +3,7 @@ import { BrowserAnimationsModule }    from '@angular/platform-browser/animations
 import { BrowserModule }              from '@angular/platform-browser';
 import { FormsModule }                from '@angular/forms';
 import { registerLocaleData }         from '@angular/common';
-import localePT                       from '@angular/common/locales/pt';
+import localePT                       from '@angular/common/locales/pt-PT';
     
 import { AppComponent }               from './app.component';
 import { AppRoutingModule }           from './app-routing.module';
