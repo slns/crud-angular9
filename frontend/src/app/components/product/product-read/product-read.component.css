@@ -13,3 +13,7 @@ table {
 .delete > i {
     color: #e35e6b;
 }
+
+.full-width-table {
+    width: 100%;
+  }

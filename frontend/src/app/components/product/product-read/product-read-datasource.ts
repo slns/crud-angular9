@@ -4,8 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
 
 
 /**
@@ -13,20 +11,13 @@ import { ProductService } from '../product.service';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ProductReadDataSource extends DataSource<Product> implements OnInit {
-  data: Product[];
+export class ProductReadDataSource extends DataSource<Product> {
+  data: Product[] = this.products;
   paginator: MatPaginator;
   sort: MatSort;
-//  products: Product[]
 
-  constructor(private productService: ProductService) {
+  constructor(private products: Product[]) {
     super();
-  }
-
-  ngOnInit(): void {
-    this.productService.read().subscribe(products => {
-      this.data = products;
-    })
   }
 
   /**
@@ -77,6 +68,7 @@ export class ProductReadDataSource extends DataSource<Product> implements OnInit
       switch (this.sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'price': return compare(+a.price, +b.price, isAsc);
         default: return 0;
       }
     });
